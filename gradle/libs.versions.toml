@@ -1,0 +1,151 @@
+[versions]
+compileSdk = "36"
+minSdk = "24"
+targetSdk = "36"
+
+agp = "9.0.0"
+androidx-activityCompose = "1.12.2"
+compose-multiplatform = "1.10.0"
+jetbrains-material3 = "1.9.0"
+jetbrains-material3Adaptive = "1.3.0-alpha02"
+jetbrains-lifecycle = "2.10.0-alpha06"
+jetbrains-materialIcons = "1.7.3"
+
+kotlin = "2.3.0"
+kotlinx-coroutines = "1.10.2"
+
+#google-services = "4.4.4"
+ksp = "2.3.4"
+kotlin-stdlib = "2.3.0"
+
+core-splashscreen = "1.2.0"
+
+supabase = "3.3.0"
+apollo-kotlin = "4.3.3"
+wire-runtime = "5.5.0"
+
+koin = "4.1.1"
+koin-annotations = "2.3.1"
+ktor = "3.3.3"
+
+jetbrains-navigation3 = "1.0.0-alpha06"
+jetbrains-navigationevent = "1.0.0"
+jetbrains-serializationCore = "1.10.0"
+
+androidx-espressoCore = "3.7.0"
+androidx-testJunit = "1.3.0"
+uiautomator = "2.3.0"
+benchmarkMacroJunit4 = "1.4.1"
+baselineprofile = "1.5.0-alpha01"
+profileinstaller = "1.4.1"
+
+buildkonfig = "0.17.1"
+
+[libraries]
+androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+jetbrains-lifecycleViewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "jetbrains-lifecycle" }
+jetbrains-lifecycleRuntime = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "jetbrains-lifecycle" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlinx-coroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutinesTest = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+
+#Compose Multiplatform
+jetbrains-composeRuntime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "compose-multiplatform" }
+jetbrains-composeUi = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "compose-multiplatform" }
+jetbrains-composeFoundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "compose-multiplatform" }
+jetbrains-composeUiUtil = { group = "org.jetbrains.compose.ui", name = "ui-util", version.ref = "compose-multiplatform" }
+jetbrains-composeComponents = { group = "org.jetbrains.compose.components", name = "components-resources", version.ref = "compose-multiplatform" }
+jetbrains-uiTooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "compose-multiplatform" }
+jetbrains-uiToolingPreview = { group = "org.jetbrains.compose.ui", name = "ui-tooling-preview", version.ref = "compose-multiplatform" }
+
+#Navigation3
+jetbrains-navigation3Ui = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-ui", version.ref = "jetbrains-navigation3" }
+jetbrains-navigationevent = { group = "org.jetbrains.androidx.navigationevent", name = "navigationevent-compose", version.ref = "jetbrains-navigationevent" }
+jetbrains-lifecycleNavigation3 = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version.ref = "jetbrains-lifecycle" }
+jetbrains-serializationCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "jetbrains-serializationCore" }
+jetbrains-adaptiveNavigation3 = { group = "org.jetbrains.compose.material3.adaptive", name = "adaptive-navigation3", version.ref = "jetbrains-material3Adaptive" }
+
+#Material3
+jetbrains-composeMaterial3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "jetbrains-material3" }
+jetbrains-material3Adaptive = { group = "org.jetbrains.compose.material3.adaptive", name = "adaptive", version.ref = "jetbrains-material3Adaptive" }
+jetbrains-adaptiveNavigationSuite = { group = "org.jetbrains.compose.material3", name = "material3-adaptive-navigation-suite", version.ref = "jetbrains-material3" }
+jetbrains-materialIconsExtended = { group = "org.jetbrains.compose.material", name = "material-icons-extended", version.ref = "jetbrains-materialIcons" }
+
+
+core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "core-splashscreen" }
+
+
+#Supabase
+supabase-bom = { module = "io.github.jan-tennert.supabase:bom", version.ref = "supabase" }
+supabase-postgrest = { module = "io.github.jan-tennert.supabase:postgrest-kt" }
+supabase-storage = { module = "io.github.jan-tennert.supabase:storage-kt" }
+supabase-auth = { module = "io.github.jan-tennert.supabase:auth-kt" }
+supabase-functions = { module = "io.github.jan-tennert.supabase:functions-kt" }
+supabase-composeAuth = { module = "io.github.jan-tennert.supabase:compose-auth" }
+supabase-apolloGraphql = { module = "io.github.jan-tennert.supabase:apollo-graphql" }
+ktor-clientOkhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+apollo-normalizedCache = { module = "com.apollographql.apollo:apollo-normalized-cache", version.ref = "apollo-kotlin" }
+apollo-normalizedCacheSqlite = { module = "com.apollographql.apollo:apollo-normalized-cache-sqlite", version.ref = "apollo-kotlin" }
+
+#Koin
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-compose = { module = "io.insert-koin:koin-compose" }
+koin-composeViewmodel = { module = "io.insert-koin:koin-compose-viewmodel" }
+#koin-composeNavigation3 = { module = "io.insert-koin:koin-compose-navigation3" }
+koin-androidxWorkmanager = { module = "io.insert-koin:koin-androidx-workmanager" }
+#koin-androidxStartup = { module = "io.insert-koin:koin-androidx-startup" }
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
+koin-kspCompiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations" }
+
+#Baseline profile
+androidx-testJunit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-testJunit" }
+androidx-espressoCore = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espressoCore" }
+androidx-uiautomator = { group = "androidx.test.uiautomator", name = "uiautomator", version.ref = "uiautomator" }
+androidx-benchmarkMacroJunit4 = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "benchmarkMacroJunit4" }
+androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "profileinstaller" }
+
+
+# Dependencies of the included build-logic
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+composeCompiler-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kotlinMultiplatform-gradlePlugin = { group = "org.jetbrains.kotlin.multiplatform", name = "org.jetbrains.kotlin.multiplatform.gradle.plugin", version.ref = "kotlin" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+android-lint = { id = "com.android.lint", version.ref = "agp" }
+android-test = { id = "com.android.test", version.ref = "agp" }
+baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
+
+apolloPlugin = { id = "com.apollographql.apollo", version.ref = "apollo-kotlin" }
+buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig" }
+
+#Convention Plugins
+sampletest-corePlugin = { id = "com.sampletest.core.plugin" }
+sampletest-featurePlugin = { id = "com.sampletest.feature.plugin" }
+sampletest-koinPlugin = { id = "com.sampletest.koin.plugin" }
+sampletest-supabasePlugin = { id = "com.sampletest.supabase.plugin" }
+
+
+
+
+
+
+[bundles]
+supabase = ['supabase-auth', 'supabase-functions', 'supabase-composeAuth', 'supabase-apolloGraphql']
+compose = ['jetbrains-composeUi', 'jetbrains-composeFoundation', 'jetbrains-composeRuntime', 'jetbrains-composeUiUtil', 'jetbrains-composeComponents', 'jetbrains-uiToolingPreview']
+material3 = ['jetbrains-composeMaterial3', 'jetbrains-material3Adaptive', 'jetbrains-adaptiveNavigationSuite', 'jetbrains-materialIconsExtended']
+koin = ['koin-core', 'koin-compose', 'koin-composeViewmodel']
+navigation3 = ['jetbrains-navigation3Ui', 'jetbrains-lifecycleNavigation3', 'jetbrains-adaptiveNavigation3', 'jetbrains-serializationCore', 'jetbrains-navigationevent']
+

@@ -1,0 +1,58 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    alias(libs.plugins.android.test)
+    alias(libs.plugins.baselineprofile)
+}
+
+
+android {
+    namespace = "com.sampletest.baselineprofile"
+    compileSdk {
+        version = release(libs.versions.compileSdk.get().toInt())
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    defaultConfig {
+        minSdk = 28
+        targetSdk = libs.versions.targetSdk.get().toInt()
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    targetProjectPath = ":androidApp"
+
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_21)
+    }
+}
+
+// This is the configuration block for the Baseline Profile plugin.
+// You can specify to run the generators on a managed devices or connected devices.
+baselineProfile {
+    useConnectedDevices = true
+}
+
+dependencies {
+    implementation(libs.androidx.testJunit)
+    implementation(libs.androidx.espressoCore)
+    implementation(libs.androidx.uiautomator)
+    implementation(libs.androidx.benchmarkMacroJunit4)
+}
+
+androidComponents {
+    onVariants { v ->
+        val artifactsLoader = v.artifacts.getBuiltArtifactsLoader()
+        v.instrumentationRunnerArguments.put(
+            "targetAppId",
+            v.testedApks.map { artifactsLoader.load(it)?.applicationId }
+        )
+    }
+}
