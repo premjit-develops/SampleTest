@@ -1,0 +1,35 @@
+query GetFavoriteQuotes($userId: UUID!, $limit: Int, $offset: Int) {
+    favoritesCollection(
+        filter: { id: { eq: $userId } }
+        first: $limit
+        offset: $offset
+    ) {
+        edges {
+            node {
+                id
+                quote_id
+                __typename
+                quotes {
+                    id
+                    text
+                    meaning
+                    __typename
+
+                    book_sectionsCollection {
+                        edges {
+                            node {
+                                books {
+                                    id
+                                    name
+                                    __typename
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        }
+    }
+}

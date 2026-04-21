@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.baselineprofile)
+    alias(libs.plugins.koinCompilerPlugin)
 }
 
 
@@ -26,6 +27,7 @@ kotlin {
         implementation(libs.jetbrains.lifecycleRuntime)
         implementation(libs.jetbrains.lifecycleViewmodel)
 
+        implementation(platform(libs.koin.bom))
         implementation(libs.koin.android)
 
         debugImplementation(libs.jetbrains.uiToolingPreview)

@@ -1,0 +1,43 @@
+query GetQuoteDetailById($quoteId: Int!, $userId: UUID!) {
+    quotesCollection(filter: { id: { eq: $quoteId } }, first: 1) {
+        edges {
+            node {
+                id
+                text
+                meaning
+                __typename
+
+                book_sectionsCollection(filter: { quote_id: { eq: $quoteId } }) {
+                    edges {
+                        node {
+                            id
+                            path_code
+                            __typename
+
+                            books {
+                                id
+                                name
+                                author
+                                __typename
+                            }
+                        }
+                    }
+                }
+
+                favoritesCollection(
+                    filter: { id: { eq: $userId }, quote_id: { eq: $quoteId } },
+                    first: 1
+                ) {
+                    edges {
+                        node {
+                            id
+                            quote_id
+                            __typename
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

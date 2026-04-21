@@ -1,0 +1,30 @@
+mutation DeleteFavoriteQuote($userId: UUID!, $quoteId: Int!) {
+    deleteFromfavoritesCollection(
+        filter: { id: { eq: $userId }, quote_id: { eq: $quoteId } }
+        atMost: 1
+    ) {
+        affectedCount
+        records {
+            id
+            quote_id
+            __typename
+
+            quotes {
+                id
+                __typename
+
+                book_sectionsCollection {
+                    edges {
+                        node {
+                            books {
+                                id
+                                name
+                                __typename
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

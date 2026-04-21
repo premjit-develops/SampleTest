@@ -13,10 +13,12 @@ class CoreConventionPlugin : Plugin<Project> {
 
         }
 
-        extensions.configure<KotlinMultiplatformExtension> {
+        configure<KotlinMultiplatformExtension> {
 
-            jvm("desktop")
-
+            compilerOptions {
+                freeCompilerArgs.add("-Xexpect-actual-classes")
+                freeCompilerArgs.add("-Xannotation-default-target=param-property")
+            }
         }
 
     }

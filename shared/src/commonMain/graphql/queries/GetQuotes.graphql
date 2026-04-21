@@ -1,0 +1,33 @@
+query GetQuotes($limit: Int, $offset: Int) {
+    quotesCollection(
+        first: $limit
+        offset: $offset
+    ) {
+        edges {
+            node {
+                id
+                text
+                meaning
+                __typename
+
+                book_sectionsCollection {
+                    edges {
+                        node {
+                            id
+                            path_code
+                            __typename
+
+                            books {
+                                id
+                                name
+                                author
+                                __typename
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

@@ -10,4 +10,6 @@ plugins {
     alias(libs.plugins.android.test) apply false
     alias(libs.plugins.baselineprofile) apply false
     alias(libs.plugins.buildkonfig) apply false
+    alias(libs.plugins.apolloPlugin) apply false
+    alias(libs.plugins.koinCompilerPlugin) apply false
 }

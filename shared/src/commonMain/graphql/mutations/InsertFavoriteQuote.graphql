@@ -1,0 +1,28 @@
+mutation InsertFavoriteQuote($userId: UUID!, $quoteId: Int!) {
+    insertIntofavoritesCollection(objects: { id: $userId, quote_id: $quoteId }) {
+        affectedCount
+        records {
+            id
+            quote_id
+            __typename
+
+            quotes {
+                id
+                __typename
+
+                book_sectionsCollection {
+                    edges {
+                        node {
+                            books {
+                                id
+                                name
+                                __typename
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

@@ -1,4 +1,3 @@
-import com.google.devtools.ksp.gradle.KspExtension
 import com.sampletest.buildlogic.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -12,7 +11,7 @@ class KoinConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) = with(target) {
 
         with(pluginManager) {
-            apply(libs.findPlugin("ksp").get().get().pluginId)
+            apply(libs.findPlugin("koinCompilerPlugin").get().get().pluginId)
 
         }
 
@@ -32,31 +31,8 @@ class KoinConventionPlugin : Plugin<Project> {
 
                 }
 
-                androidMain.dependencies {
-                    implementation(libs.findLibrary("koin-android").get())
-                }
-
             }
 
-            sourceSets.named("commonMain").configure {
-                kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
-            }
-
-        }
-
-
-        dependencies {
-            add("kspCommonMainMetadata", libs.findLibrary("koin-kspCompiler").get())
-            add("kspAndroid", libs.findLibrary("koin-kspCompiler").get())
-        }
-
-        tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }
-            .configureEach {
-                dependsOn("kspCommonMainKotlinMetadata")
-            }
-
-        extensions.configure<KspExtension> {
-            arg("KOIN_CONFIG_CHECK", "true")
         }
 
     }

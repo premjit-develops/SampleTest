@@ -1,0 +1,22 @@
+extend schema
+@link(
+    url: "https://specs.apollo.dev/cache/v0.4",
+    import: ["@typePolicy", "@fieldPolicy", "@cacheControl", "CacheControlScope"]
+)
+
+
+
+extend type Query @fieldPolicy(forField: "book_sectionsCollection", keyArgs: "filter")
+extend type book_sections @typePolicy(keyFields: "id") @cacheControl(maxAge: 7776000)
+
+
+extend type Query @fieldPolicy(forField: "booksCollection", keyArgs: "filter")
+extend type books @typePolicy(keyFields: "id") @cacheControl(maxAge: 7776000)
+
+
+extend type Query @fieldPolicy(forField: "favoritesCollection", keyArgs: "filter")
+extend type favorites @typePolicy(keyFields: "id quote_id") @cacheControl(maxAge: 7776000)
+
+
+extend type Query @fieldPolicy(forField: "quotesCollection", keyArgs: "filter")
+extend type quotes @typePolicy(keyFields: "id") @cacheControl(maxAge: 7776000)
