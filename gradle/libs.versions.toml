@@ -1,47 +1,47 @@
 [versions]
-compileSdk = "36"
+compileSdk = "37"
 minSdk = "24"
-targetSdk = "36"
+targetSdk = "37"
 
-agp = "9.1.0"
+agp = "9.2.1"
 androidx-activityCompose = "1.13.0"
-compose-multiplatform = "1.10.3"
+compose-multiplatform = "1.11.0"
 jetbrains-material3 = "1.10.0-alpha05"
-jetbrains-material3Adaptive = "1.3.0-alpha02"
+jetbrains-material3Adaptive = "1.3.0-alpha07"
 jetbrains-lifecycle = "2.10.0"
 jetbrains-materialIcons = "1.7.3"
 
-kotlin = "2.3.20"
-kotlinx-coroutines = "1.10.2"
+kotlin = "2.3.21"
+kotlinx-coroutines = "1.11.0"
 
 #google-services = "4.4.4"
-ksp = "2.3.4"
+ksp = "2.3.8"
 kotlin-stdlib = "2.3.20"
 
 core-splashscreen = "1.2.0"
 
-supabase = "3.5.0"
-apollo-kotlin = "4.4.2"
-apollo-kotlinCache = "1.0.1"
+supabase = "3.6.0"
+apollo-kotlin = "5.0.0"
+apollo-kotlinCache = "1.0.3"
 apollo-adaptersCore = "0.7.0"
 wire-runtime = "5.5.0"
 
-koin = "4.2.0"
-koinPlugin = "0.4.1"
+koin = "4.2.1"
+koinPlugin = "1.0.0"
 ktor = "3.4.2"
 
-jetbrains-navigation3 = "1.0.0-alpha06"
-jetbrains-navigationevent = "1.0.1"
-jetbrains-serializationCore = "1.10.0"
+jetbrains-navigation3 = "1.1.1"
+jetbrains-navigationevent = "1.1.0"
+jetbrains-serializationCore = "1.11.0"
 
 androidx-espressoCore = "3.7.0"
 androidx-testJunit = "1.3.0"
 uiautomator = "2.3.0"
 benchmarkMacroJunit4 = "1.4.1"
-baselineprofile = "1.5.0-alpha01"
+baselineprofile = "1.5.0-alpha06"
 profileinstaller = "1.4.1"
 
-buildkonfig = "0.17.1"
+buildkonfig = "0.21.2"
 
 [libraries]
 androidx-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -86,6 +86,7 @@ supabase-functions = { module = "io.github.jan-tennert.supabase:functions-kt" }
 supabase-composeAuth = { module = "io.github.jan-tennert.supabase:compose-auth" }
 supabase-apolloGraphql = { module = "io.github.jan-tennert.supabase:apollo-graphql" }
 ktor-clientOkhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+apollo-Runtime = { module = "com.apollographql.apollo:apollo-runtime", version.ref = "apollo-kotlin" }
 
 apollo-normalizedCache = { module = "com.apollographql.cache:normalized-cache", version.ref = "apollo-kotlinCache" }
 apollo-normalizedCacheSqlite = { module = "com.apollographql.cache:normalized-cache-sqlite", version.ref = "apollo-kotlinCache" }
@@ -148,7 +149,7 @@ sampletest-supabasePlugin = { id = "com.sampletest.supabase.plugin" }
 
 
 [bundles]
-supabase = ['supabase-auth', 'supabase-functions', 'supabase-composeAuth', 'supabase-apolloGraphql']
+supabase = ['supabase-auth', 'supabase-functions', 'supabase-composeAuth', 'supabase-apolloGraphql', 'apollo-Runtime']
 compose = ['jetbrains-composeUi', 'jetbrains-composeFoundation', 'jetbrains-composeRuntime', 'jetbrains-composeUiUtil', 'jetbrains-composeComponents', 'jetbrains-uiToolingPreview']
 material3 = ['jetbrains-composeMaterial3', 'jetbrains-material3Adaptive', 'jetbrains-adaptiveNavigationSuite', 'jetbrains-materialIconsExtended']
 koin = ['koin-core', 'koin-compose', 'koin-composeViewmodel']
