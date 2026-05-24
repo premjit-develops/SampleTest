@@ -39,7 +39,7 @@ class FavoritesViewModel(
     fun deleteFavorite(quoteId: Int) {
         viewModelScope.launch {
 
-            repository.toggleFavorite(quoteId, isFavorite = true)
+            repository.deleteFavorite(quoteId)
 
         }
     }

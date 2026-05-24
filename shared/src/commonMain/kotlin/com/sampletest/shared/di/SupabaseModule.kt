@@ -4,6 +4,8 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.cache.normalized.api.CacheKey
 import com.apollographql.cache.normalized.api.NormalizedCacheFactory
 import com.apollographql.cache.normalized.memory.MemoryCacheFactory
+import com.apollographql.cache.normalized.storeExpirationDate
+import com.apollographql.cache.normalized.storeReceivedDate
 import com.sampletest.shared.BuildKonfig
 import com.sampletest.shared.cache.Cache.cache
 import io.github.jan.supabase.SupabaseClient
@@ -29,9 +31,10 @@ class SupabaseModule {
 
         install(GraphQL) {
             apolloConfiguration {
+                storeExpirationDate(true)
+                storeReceivedDate(true)
                 cache(
-                    normalizedCacheFactory = chainedCacheFactory,
-                    keyScope = CacheKey.Scope.SERVICE
+                    normalizedCacheFactory = chainedCacheFactory
                 )
             }
         }

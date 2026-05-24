@@ -6,6 +6,7 @@ import com.apollographql.apollo.api.Operation
 import com.apollographql.apollo.api.Optional
 import com.apollographql.apollo.exception.ApolloGraphQLException
 import com.apollographql.cache.normalized.FetchPolicy
+import com.apollographql.cache.normalized.apolloStore
 import com.apollographql.cache.normalized.fetchPolicy
 import com.apollographql.cache.normalized.watch
 import com.sampletest.shared.DeleteFavoriteQuoteMutation
@@ -80,27 +81,139 @@ class QuoteRepository(
         }.asResultFlow()
 
 
-    suspend fun toggleFavorite(
+    suspend fun insertFavorite(
         quoteId: Int,
-        isFavorite: Boolean
+        quoteText: String,
+        quoteMeaning: String,
+        bookSections: List<BookSection>
     ): Result<Unit> {
         return try {
 
-            if (isFavorite) {
+            val query = GetFavoriteQuotesQuery(
+                userId = USER_ID,
+                limit = Optional.present(100),
+                offset = Optional.present(0)
+            )
 
-                apolloClient.mutation(DeleteFavoriteQuoteMutation(USER_ID, quoteId)).execute()
+            val response =
+                apolloClient.query(query).fetchPolicy(FetchPolicy.CacheFirst).execute()
 
-                Result.success(Unit)
-            } else {
 
-                apolloClient.mutation(InsertFavoriteQuoteMutation(USER_ID, quoteId)).execute()
-                Result.success(Unit)
+            apolloClient.mutation(InsertFavoriteQuoteMutation(USER_ID, quoteId)).execute()
+
+
+            val currentEdges = response.data
+                ?.favoritesCollection
+                ?.edges
+                .orEmpty()
+
+            val newEdge = GetFavoriteQuotesQuery.Edge(
+                __typename = "favoritesEdge",
+                node = GetFavoriteQuotesQuery.Node(
+                    __typename = "favorites",
+                    id = USER_ID,
+                    quote_id = quoteId,
+
+                    quotes = GetFavoriteQuotesQuery.Quotes(
+                        __typename = "quotes",
+                        id = quoteId,
+                        text = quoteText,
+                        meaning = quoteMeaning,
+
+                        book_sectionsCollection =
+                            GetFavoriteQuotesQuery.Book_sectionsCollection(
+                                __typename = "book_sectionsConnection",
+                                edges = bookSections.map {
+                                    GetFavoriteQuotesQuery.Edge1(
+                                        __typename = "book_sectionsEdge",
+                                        node = GetFavoriteQuotesQuery.Node1(
+                                            __typename = "book_sections",
+                                            id = it.id,
+                                            books = GetFavoriteQuotesQuery.Books(
+                                                __typename = "books",
+                                                id = it.book.id,
+                                                name = it.book.name
+                                            )
+                                        )
+                                    )
+                                }
+                            )
+                    )
+                )
+            )
+
+
+            val updatedEdges = (listOf(newEdge) + currentEdges)
+                .distinctBy { it.node.quote_id }
+
+            val newData = response.data?.copy(
+                favoritesCollection = response.data?.favoritesCollection?.copy(
+                    edges = updatedEdges
+                )
+            )
+
+            if (newData != null) {
+                apolloClient.apolloStore.writeOperation(
+                    operation = query,
+                    data = newData,
+                    publish = true
+                )
             }
+
+
+            Result.success(Unit)
+
+
         } catch (e: Exception) {
             Result.failure(e)
         }
 
     }
+
+
+    suspend fun deleteFavorite(
+        quoteId: Int
+    ): Result<Unit> {
+        return try {
+
+            val query = GetFavoriteQuotesQuery(
+                userId = USER_ID,
+                limit = Optional.present(100),
+                offset = Optional.present(0)
+            )
+
+            val response =
+                apolloClient.query(query).fetchPolicy(FetchPolicy.CacheFirst).execute()
+
+
+            apolloClient.mutation(DeleteFavoriteQuoteMutation(USER_ID, quoteId)).execute()
+
+            val updatedEdges = response.data?.favoritesCollection?.edges
+                ?.filterNot { it.node.id == USER_ID && it.node.quote_id == quoteId }.orEmpty()
+
+            val newData = response.data?.copy(
+                favoritesCollection = response.data?.favoritesCollection?.copy(
+                    edges = updatedEdges
+                )
+            )
+
+            if (newData != null) {
+                apolloClient.apolloStore.writeOperation(
+                    operation = query,
+                    data = newData,
+                    publish = true,
+
+                    )
+            }
+
+            Result.success(Unit)
+
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+
+    }
+
 
 }
 

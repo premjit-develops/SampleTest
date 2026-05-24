@@ -126,7 +126,7 @@ apollo {
         )
 
         plugin(libs.apollo.normalizedCachePlugin.get()) {
-            argument("com.apollographql.cache.packageName", packageName.get())
+            pluginArgument("com.apollographql.cache.packageName", packageName.get())
         }
 
     }

@@ -58,7 +58,14 @@ class QuoteDetailViewModel(
 
 
             viewModelScope.launch {
-                repository.toggleFavorite(quote.id, quote.isFavorite)
+
+
+                repository.insertFavorite(
+                    quoteId = quote.id,
+                    quoteText = quote.text,
+                    quoteMeaning = quote.meaning,
+                    bookSections = quote.bookSection
+                )
                     .onFailure {
                         _uiState.value = UiState.Success(quote)
                     }
